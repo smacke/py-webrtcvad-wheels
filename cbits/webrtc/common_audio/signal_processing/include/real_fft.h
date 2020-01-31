@@ -8,14 +8,15 @@
  *  be found in the AUTHORS file in the root of the source tree.
  */
 
-#ifndef COMMON_AUDIO_SIGNAL_PROCESSING_INCLUDE_REAL_FFT_H_
-#define COMMON_AUDIO_SIGNAL_PROCESSING_INCLUDE_REAL_FFT_H_
+#ifndef WEBRTC_COMMON_AUDIO_SIGNAL_PROCESSING_INCLUDE_REAL_FFT_H_
+#define WEBRTC_COMMON_AUDIO_SIGNAL_PROCESSING_INCLUDE_REAL_FFT_H_
 
-#include <stdint.h>
+#include "webrtc/typedefs.h"
 
 // For ComplexFFT(), the maximum fft order is 10;
+// for OpenMax FFT in ARM, it is 12;
 // WebRTC APM uses orders of only 7 and 8.
-enum { kMaxFFTOrder = 10 };
+enum {kMaxFFTOrder = 10};
 
 struct RealFFT;
 
@@ -56,7 +57,7 @@ void WebRtcSpl_FreeRealFFT(struct RealFFT* self);
 //
 // Return Value:
 //   0  - FFT calculation is successful.
-//   -1 - Error with bad arguments (null pointers).
+//   -1 - Error with bad arguments (NULL pointers).
 int WebRtcSpl_RealForwardFFT(struct RealFFT* self,
                              const int16_t* real_data_in,
                              int16_t* complex_data_out);
@@ -84,7 +85,7 @@ int WebRtcSpl_RealForwardFFT(struct RealFFT* self,
 //   0 or a positive number - a value that the elements in the |real_data_out|
 //                            should be shifted left with in order to get
 //                            correct physical values.
-//   -1 - Error with bad arguments (null pointers).
+//   -1 - Error with bad arguments (NULL pointers).
 int WebRtcSpl_RealInverseFFT(struct RealFFT* self,
                              const int16_t* complex_data_in,
                              int16_t* real_data_out);
@@ -93,4 +94,4 @@ int WebRtcSpl_RealInverseFFT(struct RealFFT* self,
 }
 #endif
 
-#endif  // COMMON_AUDIO_SIGNAL_PROCESSING_INCLUDE_REAL_FFT_H_
+#endif  // WEBRTC_COMMON_AUDIO_SIGNAL_PROCESSING_INCLUDE_REAL_FFT_H_
