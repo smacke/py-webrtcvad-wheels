@@ -38,10 +38,15 @@ stages:
 
 jobs:
   include:
-    # Optional: run a test on Windows
-    - os: windows
+    # Optional: run a test on Windows & macOS
+    - name: Test on Windows
+      os: windows
       language: shell
-      name: Test on Windows
+    - name: Test on macOS
+      os: osx
+      language: shell
+      install: python -m pip install twine cibuildwheel==1.1.0
+      script: python -m cibuildwheel --output-dir wheelhouse
 
     # Deploy source distribution
     - stage: deploy

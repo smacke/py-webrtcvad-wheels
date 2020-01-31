@@ -37,12 +37,15 @@ if sys.platform.startswith('win'):
     define_macros.extend([('_WIN32', None), ('WEBRTC_WIN', None)])
 else:
     define_macros.extend([('WEBRTC_POSIX', None), ])
-    if not sys.platform.startswith('darwin'):
+    if sys.platform.startswith('darwin'):
+        extra_compile_args.extend(['-stdlib=libc++'])
+    else:
         extra_compile_args.extend(['-std=c++11'])
 
 module = Extension('_webrtcvad',
                    define_macros=define_macros,
                    extra_compile_args=extra_compile_args,
+                   language="c++",
                    sources=c_sources,
                    include_dirs=['cbits'])
 
