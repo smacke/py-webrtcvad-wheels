@@ -37,13 +37,13 @@ How to use it
     vad.set_mode(1)
 
 3. Give it a short segment ("frame") of audio. The WebRTC VAD only
-   accepts 16-bit mono PCM audio, sampled at 8000, 16000, or 32000 Hz.
+   accepts 16-bit mono PCM audio, sampled at 8000, 16000, 32000 or 48000 Hz.
    A frame must be either 10, 20, or 30 ms in duration::
 
     # Run the VAD on 10 ms of silence. The result should be False.
     sample_rate = 16000
     frame_duration = 10  # ms
-    frame = b'\x00\x00' * (sample_rate * frame_duration / 1000)
+    frame = b'\x00\x00' * int(sample_rate * frame_duration / 1000)
     print 'Contains speech: %s' % (vad.is_speech(frame, sample_rate)
 
 
@@ -60,3 +60,21 @@ To run unit tests::
 
     pip install -e ".[dev]"
     python setup.py test
+
+
+History
+-------
+
+2.0.10
+
+    Fixed memory leak. Thank you, `bond005
+    <https://github.com/bond005>`_!
+
+2.0.9
+
+    Improved example code. Added WebRTC license.
+
+2.0.8
+
+    Fixed Windows compilation errors. Thank you, `xiongyihui
+    <https://github.com/xiongyihui>`_!
