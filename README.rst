@@ -1,11 +1,13 @@
 .. image:: https://travis-ci.org/wiseman/py-webrtcvad.svg?branch=master
     :target: https://travis-ci.org/wiseman/py-webrtcvad
 
-py-webrtcvad
-============
+py-webrtcvad-wheels
+===================
 
-This is a python interface to the WebRTC Voice Activity Detector
-(VAD).  It is compatible with Python 2 and Python 3.
+This is a python interface to the WebRTC Voice Activity Detector (VAD). 
+It is compatible with Python 2 and Python 3.  It is forked from
+`wiseman/py-webrtcvad <https://github.com/wiseman/py-webrtcvad>`_ to
+provide releases with binary wheels.
 
 A `VAD <https://en.wikipedia.org/wiki/Voice_activity_detection>`_
 classifies a piece of audio data as being voiced or unvoiced. It can

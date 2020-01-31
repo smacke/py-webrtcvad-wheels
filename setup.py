@@ -39,14 +39,14 @@ with open(os.path.join(here, 'README.rst')) as f:
     long_description = f.read()
 
 setup(
-    name='webrtcvad',
-    author='John Wiseman',
-    author_email='jjwiseman@gmail.com',
+    name='webrtcvad-wheels',
+    author='David Zurow',
+    author_email='daanzu@gmail.com',
     version='2.0.10',
     description=('Python interface to the Google WebRTC Voice '
-                 'Activity Detector (VAD)'),
+                 'Activity Detector (VAD) [released with binary wheels!]'),
     long_description=long_description,
-    url='https://github.com/wiseman/py-webrtcvad',
+    url='https://github.com/daanzu/py-webrtcvad-wheels',
     license='MIT',
     classifiers=[
         # How mature is this project? Common values are
@@ -70,10 +70,10 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     keywords='speechrecognition asr voiceactivitydetection vad webrtc',
     ext_modules=[module],
