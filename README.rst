@@ -1,5 +1,9 @@
-.. image:: https://travis-ci.org/wiseman/py-webrtcvad.svg?branch=master
-    :target: https://travis-ci.org/wiseman/py-webrtcvad
+.. image:: https://travis-ci.org/daanzu/py-webrtcvad-wheels.svg?branch=release
+    :target: https://travis-ci.org/daanzu/py-webrtcvad-wheels
+.. image:: https://img.shields.io/pypi/v/webrtcvad-wheels.svg
+    :target: https://pypi.python.org/pypi/webrtcvad-wheels/
+.. image:: https://img.shields.io/pypi/wheel/webrtcvad-wheels.svg
+    :target: https://pypi.python.org/pypi/webrtcvad-wheels/
 
 py-webrtcvad-wheels
 ===================
