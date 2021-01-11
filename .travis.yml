@@ -7,23 +7,26 @@
 
 language: python
 python:
-  - 3.5
-  - 3.6
   - 3.7
   - 3.8
+  - 3.9
 
 before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" = windows ]]; then
         choco install python --version 3.8.0
         export PATH="/c/Python38:/c/Python38/Scripts:$PATH"
+        # make sure it's on PATH as 'python3'
+        ln -s /c/Python38/python.exe /c/Python38/python3.exe
     fi
 
 install:
-  - python -m pip install -e .[dev]
+  - python3 -m pip install -e .[dev]
 
 script:
-  - nosetests
+  - python3 setup.py install
+  # FIXME
+  # - pytest
 
 stages:
   - test
@@ -38,47 +41,48 @@ stages:
 
 jobs:
   include:
-    # Optional: run a test on Windows & macOS
-    - name: Test on Windows
-      os: windows
+    # Optional: run a test on Windows
+    - os: windows
       language: shell
-    - name: Test on macOS
-      os: osx
-      language: shell
-      install: python -m pip install twine cibuildwheel==1.1.0
-      script: python -m cibuildwheel --output-dir wheelhouse
+      name: Test on Windows
 
     # Deploy source distribution
     - stage: deploy
       name: Deploy source distribution
-      install: python -m pip install twine
-      script: python setup.py sdist --formats=gztar
-      after_success: python -m twine upload --skip-existing dist/*.tar.gz
+      install: skip
+      script: python3 setup.py sdist --formats=gztar
+      after_success: |
+        python3 -m pip install twine
+        python3 -m twine upload --skip-existing dist/*.tar.gz
     # Deploy on linux
     - stage: deploy
       name: Build and deploy Linux wheels
       services: docker
-      install: python -m pip install twine cibuildwheel==1.1.0
-      script: python -m cibuildwheel --output-dir wheelhouse
-      after_success: python -m twine upload --skip-existing wheelhouse/*.whl
+      install: python3 -m pip install cibuildwheel==1.7.4
+      script: python3 -m cibuildwheel --output-dir wheelhouse
+      after_success: |
+        python3 -m pip install twine
+        python3 -m twine upload --skip-existing wheelhouse/*.whl
     # Deploy on mac
     - stage: deploy
       name: Build and deploy macOS wheels
       os: osx
       language: shell
-      install: python -m pip install twine cibuildwheel==1.1.0
-      script: python -m cibuildwheel --output-dir wheelhouse
-      after_success:
-        - python -m pip install twine
-        - python -m twine upload --skip-existing wheelhouse/*.whl
+      install: python3 -m pip install cibuildwheel==1.7.4
+      script: python3 -m cibuildwheel --output-dir wheelhouse
+      after_success: |
+        python3 -m pip install twine
+        python3 -m twine upload --skip-existing wheelhouse/*.whl
     # Deploy on windows
     - stage: deploy
       name: Build and deploy Windows wheels
       os: windows
       language: shell
-      install: python -m pip install twine cibuildwheel==1.1.0
-      script: python -m cibuildwheel --output-dir wheelhouse
-      after_success: python -m twine upload --skip-existing wheelhouse/*.whl
+      install: python3 -m pip install cibuildwheel==1.7.4
+      script: python3 -m cibuildwheel --output-dir wheelhouse
+      after_success: |
+        python3 -m pip install twine
+        python3 -m twine upload --skip-existing wheelhouse/*.whl
 
 env:
   global:
