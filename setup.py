@@ -76,11 +76,15 @@ setup(
     keywords='speechrecognition asr voiceactivitydetection vad webrtc',
     ext_modules=[module],
     py_modules=['webrtcvad'],
-    test_suite='nose.collector',
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example: $ pip install -e .[dev,test]
     extras_require={
-        'dev': ['nose', 'check-manifest', 'unittest2', 'zest.releaser',
-                'psutil', 'memory_profiler']
+        'dev': [
+            'unittest2',
+            # 'check-manifest',
+            # 'zest.releaser',
+            # 'psutil',
+            # 'memory_profiler',
+        ]
     })
